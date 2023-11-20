@@ -1,0 +1,70 @@
+==>What is Docker?
+Docker is a containerization platform that enables developers to package applications and their dependencies into containers.
+Containers provide a consistent and isolated environment, ensuring that applications run consistently across different environments.
+
+Key Concepts:
+==>Container:
+A lightweight, standalone, and executable package that includes everything needed to run a piece of software, such as code, runtime, libraries, and system 
+
+tools.
+==>Image:
+A read-only template used to create containers. Images are the building blocks of containers.
+
+==>Dockerfile:
+A script containing instructions for building a Docker image. It defines the base image, sets up the environment, and executes commands to configure the image.
+
+==>Registry:
+A repository for storing and sharing Docker images. Docker Hub is a popular public registry, and private registries can be set up for internal use.
+
+==>Containerization vs. Virtualization:
+Containers share the host OS kernel, making them lightweight and more efficient compared to virtual machines.
+
+Basic Commands:
+#docker run [options] image_name [command] [args]  : //Runs a command in a new container based on the specified image.
+#docker build [options] path                       : // Builds a Docker image from a Dockerfile.
+#docker images                                      : //Lists all locally available Docker images.
+#docker ps                                          : //Lists running containers.
+#docker ps -a                                       : //Lists all containers, including stopped ones.
+#docker exec [options] container_id [command] [args]: //Runs a command in a running container.
+#docker stop container_id                           : //Stops a running container.
+#docker rm container_id                             : //Removes a stopped container.
+#docker rmi image_name                              : //Removes a Docker image.
+#Docker Compose                                     : //Docker Compose is a tool for defining and running multi-container Docker applications using a YAML file to configure the application’s services, networks, and volumes.
+docker-compose up:
+
+Builds and starts containers as defined in the docker-compose.yml file.
+docker-compose down:
+
+Stops and removes containers, networks, and volumes defined in the docker-compose.yml file.
+Networking in Docker:
+Bridge Network:
+
+Default network mode where containers can communicate with each other if they are on the same bridge network.
+Host Network:
+
+Containers share the host's network stack, making them directly accessible from the host.
+Overlay Network (Swarm):
+
+Enables communication between containers across multiple Docker hosts in a Swarm.
+Volumes:
+Volumes provide a way to persist and manage data outside the lifecycle of a container.
+docker volume create volume_name:
+
+Creates a named volume.
+docker run -v volume_name:/container/path ...:
+
+Mounts a volume into a container.
+Docker Swarm:
+Docker Swarm is Docker's native clustering and orchestration solution.
+docker swarm init:
+
+Initializes a Swarm on the current node.
+docker node ls:
+
+Lists nodes in the Swarm.
+docker service create [options] image_name:
+
+Deploys a service in the Swarm.
+docker stack deploy -c docker-compose.yml stack_name:
+
+Deploys a stack (group of services) in the Swarm.
