@@ -1,0 +1,421 @@
+//LINUX//
+
+LINUX IS A OPEN SOURCE OPERATING SYSTEM
+MORE SECURITY , SHELLS ,SERVERS WIDELY USED IN EVERY ORGANIZATION
+
+//FOLDER STRUCTURE//
+
+/root (super user root user home directory)
+/bin  (binary directory executable codes or normal user commands) eg:-ls,mkdir,rm
+/usr  (manual pages for help)
+/sbin (system binary directory executable codes or root user commands) eg:-useradd,shutdown,mount
+/opt  (software install) eg:-java,oracle,maven
+/var  (logs,mails,messages)
+/home (normal user home directory)
+/dev  (logical device information) eg:-disk,partitions
+/media(to access removable devices) eg:-pendrive,usb,hard disk
+/tmp  (to download , share purpose)
+/boot (kernal file)
+/etc  (configuration files) eg:-mysql,apache,config files
+
+//FILES SYSTEM//
+
+regular files :- files , directories
+special files :- videos, newly added devices
+
+//COMMONLY USED COMMANDS//
+
+pwd:-present working directory
+cd :-change directory
+ls :-list files
+
+//EDITORS FOR CREATING FILES//
+
+cat>filename   /to create file ctrl + D to save  //only used to view or add data
+cat>>filename  /to append data 
+cat filename   /to view file 
+
+touch filename        /to create empty files     
+touch filename{1,2}   /to create multiple files with same name
+touch filename{1..20} /to create range of files 
+
+vi filename       /text editor of linux
+=============>inserting
+esc i   :-to insert text            /inserting text
+esc o   :-insert new line before cursor
+esc O   :-insert new line after cursor
+
+=============>navigation keys for cursor
+esc ^ :-start of char in line
+esc $ :-end of char in line
+esc H :-starting line of page
+esc M :-middle line of page
+esc G :-end line of the page
+esc l :-move next char
+esc h :-move back char
+esc j :-move one line down
+esc k :-move one line up
+esc w :-move one word forward
+esc b :-move one word back
+
+=============>for copy
+esc yy :-to copy line
+esc yw :-to copy word
+esc yl :-to copy char
+p      :-paste
+
+=============>for delete
+esc dd :-to delete line
+esc dw :-to delete word
+esc x  :-to delete on cursor char  //delete button
+esc X  :-to delete before chsr of cursor //backspace button
+
+=============>for replace
+esc R :-to replace line
+esc r :-to replace char
+esc cw :-to replace word
+
+=============>for others with colon
+esc u :- to undo
+esc :se nu   /to see lines with number
+esc :se nonu /to see without number
+esc :/word   /too search word or pattern
+esc :1       /to move to particular line
+esc :1,$s/x/X/g  /to replace word in range where s is substitute and $ is end of file
+esc :5s/x/C/g    /to replace single line 
+esc :wq!         /save and quit
+esc :q!          /only quit
+
+//COLOR OF FILES //
+
+black    text file
+blue     directory
+green    script file
+red      zip or packages etc
+
+//MAKING DIRECTORIES//
+
+mkdir demo        create directory
+mkdir -p a/b/c/d  create directory recurively
+cd ..             to go back to parent directory
+cd ../../..	  to move back multiple back directories
+cd or cd ~        to return home directory
+
+//REMOVING FILES AND DIRECTORIES//
+
+rm filename       to remove files   
+rm -f filename    to remove files forcefully
+rmdir dirname     to remove empty directory
+rm -rf dirname    to remove recursively forcefully directory
+
+//FILE FORMAT//
+
+---------- links owner group  size month date time  filename
+-rwxrw-r--    ====>- file  or  d directory
+	      ====>rwx   owner permission for read write execute
+              ====>rw-   group permissions
+              ====>r--   others permission
+links         related tothe file heading towards
+owner         user
+group         user in group
+size          file size
+time date
+filename
+
+//CHANGING PERMISSIONS OF FILE//
+
+using numbers r=4 w=2 x=1  
+chmod 766 filename  
+u=7 r+w+x g=6 r+w o=6  
+using symbols 
+chmod u=rwx,g=r,o=rw filename
+
+//TO DISPLAY EXISTING USER IN LINUX//
+
+cat /etc/passwd
+
+root:*:0:0:system administrator:/var/root:/bin/sh
+<username>:<password>:<uid>:<gid>:<comment>:<home dir>:<shell>
+
+to create new user in file
+useradd name1    to add user
+to view group on linux
+cat /etc/group
+to add group
+groupadd name2   to add group
+
+//CHANGING OWNERSHIPOF FILES//
+
+chown name1 filename  /to change ownership of file
+chgrp name2 filename  /to change group of file
+
+//PACKAGE RELATED COMMANDS//
+
+                     centos redhat
+  
+rpm is a offline package manager for centos redhat download package without dependency
+rpm -ivh packagename        where i-install  v-verbose h-hash progress
+rpm -q   packagename        to query package installed or not 
+rpm -qi  packagename        to get more info about installed package 
+rpm -ql  packagename        to get list of files in package    
+rpm -qR  packagename        to get dependency list 
+rpm -Uvh packagename        to upgrade package       
+rpm -e   packagename        to erase package 
+
+yum is a online package manager for centos redhat downloadpackage with dependency need internet
+yum install pkg            to install
+yum remove  pkg            to remove
+yum update  pkg            to update
+yum list installed         to get list of installed pkg
+
+                      ubuntu/debian
+
+alternate of rpm offline dpkg package manager
+dpkg -i pkg                to install pkg
+dpkg -l pkg                to query pkg
+dpkg -r 0r purge pkg       to remove pkg
+
+alternate to yum online pkg manager apt or apt-get
+apt install pkg            to install pkg
+apt list    pkg            to list installed pkg
+apt update  pkg            to update pkg
+apt purge   pkg            to delete pkg
+
+                      services(after installing pkgs)
+
+centos/ubuntu
+service    pkgname                   start/stop/status/reload/restart    
+systemctl  enable/start/stop/status  pkgname 
+
+//SIMPLE FILTER COMMANDS//
+
+head                  to display starting lines of file(default 10)
+head filename
+head -n filename      to display starting n no of lines
+
+tail                  to display ending lines of file(default 10)
+tail filename
+tail -n filename      to display n ending lines of file
+
+wc                    word count to display lines words and char
+wc filename
+wc -l filename        to display only line
+wc -w filename        to display only word
+wc -c filename        to display only char
+
+cut                   to display char/block or field 
+cut -c5   filename    to display char on position
+cut -c5-8 filename    to display block of char 
+cut -c5,8             to display char on diff position
+cut -f1 -d":" filename      to display field seperated by delimitor (:)
+cut -f1-4 -d":" filename    to display block of fields
+cut -f1,4 -d":" filename    to display different fields
+
+diff file1 file2      to dispaly differnet lines in two files
+sdiff file1 file 2    to compare side by side of two files
+cmp file1 file2       to compare two files by char
+uniq file             to display uniq lines by duplicates in a file -d (duplicate lines) -D(lines repeated)
+sort file             to sort text in file -r (to reverse sort)
+more file             to scroll file by enter-line by line space-page by page f-forward b-backward q-quit
+less file 
+
+tr '[a-z]' '[A-Z]'<sample    to translate char in a file by < reading operator
+awk -F":" '{print $n}'<file  to display field by eliminator n=0 all fields
+
+//ADVANCE FILTER COMMANDS//
+
+grep <word> filename      to search word/patter/global
+-w exact word -i ignore case sensitive -n line no -c word count  -v line without word
+global chars ^(starting with) (end with)$ with words
+
+sed(stream editor)        to display or replace specific line or word
+
+sed -n '10p' file        // p print line //d don't print  //n line no
+sed -n '10,12p' file      range of lines
+sed -n '10p
+7p' file                  multiple lines
+
+replacing word
+
+sed 's/old/new/g' file          //temporary display of file
+sed 's/old/new/g' file >newfile //to save in file
+
+searching files
+
+find location (-name -type -size -time -perm) target     
+-name filename    -type f or d   -size +-100  -xtime x(creation modified access) -perm 667
+to remove after searching
+find location (-name -type -size -time -perm) target | xargs or exec /bin/rm -f
+
+//PROCESS HANDLING//
+
+ps         to list process on terminal
+ps -a      to get all running process in system
+output :
+USER   PID   PPID  PRIORITY STIME TERMINAL  ETIME CMD
+
+----to kill process with id
+             kill -9 pid                 -9for killing child threats
+----to kill process with service name
+             pkill -9 sname 
+
+//OTHER NETWORK COMMANDS AND RANDOMLY USED FILES//
+
+ifconfig
+netstat  
+cat /etc/passwd
+cat /etc/user
+cat /etc/group
+cat /etc/services
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+GIT VCS (to track history of changes u made in locac repo)
+
+install git with cli
+intialise git
+#git init
+
+configure git details
+#git congig --global user.name <name>
+#git congig --global user.email <email>
+
+to view user and email
+#git congig --global user.name 
+#git congig --global user.email
+#git congig --global user
+
+workflow of git
+1  create/modify/delete file
+2  add staging
+3  commit
+
+create file
+#cat>file
+hi hello
+add staging
+#git add file
+commit
+#git commit -m "description of commit"
+
+to check commit history
+#git log                   (for full history)
+#git log --oneline         (to see one line commit)
+#git log --oneline | wc -l (to see no of commits)
+
+to view changes made in commit
+#git show <commit id>      (to see particular commit)
+#git show                  (to see all changes)
+
+git (restore / reset / revert / rebase)
+to restore files after making changes
+#git restore file
+to restore files after adding to stage
+#git restore --staged file
+#git restore file
+to delete the latest commit 
+#git reset --hard or --soft HEAD~
+
+.git folder 
+config      : to change repository settings
+description : to set name for the repository
+hooks       : to maintain automated scripts
+index       : to maintain snapshot of changes
+info        : to exclude any file from git commit we update in this file
+logs        : commit history maintain
+objects     : to maintain object level changes while changes mad in files everytime creates 2 digits directory and create sha-id
+HEAD/ref    : refer to latest commit info
+
+BRANCHING
+
+everything is made on main branch 
+sometimes for testing we cannot go with main branch 
+so we create multiple branches once we are ready with our changes we merge it with main branch
+
+create branch
+#git branch name
+list branch
+#git branch   (* reperesnts current branch) 
+to switch branch
+#git checkout name
+to switch with creating new branch
+#git branch -b name
+to merge branches
+#git merge source target
+to delete branch
+# git delete -d name
+
+MERGE CONFLICTS
+
+when a coder make a changes in same line of code
+it create conflicts
+we need to make one change
+then commit it
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+                                                                             
+
+
+
+
+
+       
+
+https://github.com/krishnareddy-2001/demo.git //
+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//           github passwd key
+https://github.com/krishnareddy-2001/tree.git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
